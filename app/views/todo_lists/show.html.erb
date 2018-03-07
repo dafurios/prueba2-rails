@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @todo_list.completed %>
+</p>
+
+<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
+<%= link_to 'Back', todo_lists_path %>
+
+
+<h1>Ranking</h1>
+
+<div class="container">
+
+  <div class="row">
+    <% @users.each do |todo| %>
+        <div class="col-sm">
+          <div class="card" style="width: 18rem;">
+            <%= image_tag todo.picture , class: "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><strong> <%= todo.email %></strong></h5>
+            </div>
+		  </div>
+	  </div>
+
+	<% end %>
+
+  </div>
+</div>
+
+<div class="text-center">
+	<h3>Otros Usuarios</h3>
+	<% if !@rest.nil? %>
+	<% @rest.each do |var| %>
+	<li><%= var.email %></li>
+	<% end %>
+	<% end %>
+</div>
+
+<div>
+  <a href="<%= root_path %>" class="btn btn-primary" data-method="root">VOLVER</a>
+</div>

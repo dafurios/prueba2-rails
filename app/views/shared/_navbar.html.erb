@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<%= root_path %>">Mi App Dieciochera</a>
+  <% if user_signed_in? %>
+    <a class="navbar-brand" href= <%= todo_lists_path %> >Mis Tareas Realizadas</a>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+
+      <% if user_signed_in? %>
+
+      <li class="navbar-brand">
+				(<%= @quantity_todos.nil? ? "Completados 0/#{@quantity_total}" : "Completados #{@quantity_todos}/#{@quantity_total}"  %>)
+			</li>
+
+        <li class="nav-item">
+          <%= link_to current_user.email, '#', class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to 'Iniciar Sesión', new_user_session_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Registrarse', new_user_registration_path, class: 'nav-link' %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

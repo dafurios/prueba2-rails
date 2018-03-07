@@ -1,0 +1,27 @@
+
+<h1>Mis Tareas</h1>
+
+<div class="container">
+
+  <div class="row">
+    <% @todo_lists.each do |todo_list| %>
+        <div class="col-sm">
+          <div class="card" style="width: 18rem;">
+            <%= image_tag todo_list.picture , class: "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><strong> <%= todo_list.title %></strong></h5>
+              <p class="card-text"><%= todo_list.content %> </p>
+              <div class=" text-center">
+
+                <a href="<%= root_path %>" class="btn btn-primary" data-method="root">VOLVER</a>
+
+					    </div>
+
+			  </div>
+		  </div>
+	  </div>
+
+	<% end %>
+
+  </div>
+</div>

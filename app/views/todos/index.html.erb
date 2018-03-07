@@ -1,0 +1,36 @@
+
+
+<h1>Tareas</h1>
+
+  <div class="container">
+
+    <div class="row">
+      <% @todos.each do |todo| %>
+          <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+              <%= image_tag todo.picture , class: "card-img-top" %>
+              <div class="card-body">
+                <h5 class="card-title"><strong> <%= todo.title %></strong></h5>
+                <p class="card-text"><%= todo.content %> </p>
+                <div class=" text-center">
+      						<% if user_signed_in?%>
+      							<% if current_user.todo_lists.find_by(todo_id: todo.id).nil? %>
+      								<a href="<%= todo_todo_lists_path(todo.id, flag:'Hecho') %>" class="btn btn-success" data-method="post">¡ LISTO !</a>
+      							<% else %>
+      								 <a href="<%=todo_todo_lists_path(todo.id, flag:'Falta') %>" class="btn btn-danger" data-method="post">¡ PENDIENTE !</a>
+      							<% end %>
+                      <a href="<%= todo_todo_lists_path(todo.id) %>" class="btn btn-info" data-method="post">¡ DETALLE !</a>
+      							<% end %>
+              	</div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <% end %>
+        </div>
+
+    </div>
+
+  <br><br>
